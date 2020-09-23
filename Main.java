@@ -34,6 +34,10 @@ public class Main {
 		for(long test_case=0;test_case<T;test_case++) {
 			
 			long n=scanner.nextLong();
+			if(n%2==1)
+				System.out.println("-1");
+			else {
+				
 			for(long i=1;i<=n;i++) {
 				
 				if(i%2!=0)
@@ -42,6 +46,7 @@ public class Main {
 					System.out.print(i-1+" ");
 					
 				
+			}
 			}
 			
 			
