@@ -1,0 +1,323 @@
+//friend void anotherClass::memberFunction(base&);
+//call by ref ,call by value.
+// abstraction,encapsulation,deep copy shallow copy , 
+//inline functions 
+//static 
+//why inline functions not virtual
+//pure virtual function
+//inheritence complete
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+<< - insertion or put to operator.
+>> - extraction or get from operator 
+
+----Below are the main types of ---tokens--- in C++:
+
+Identifiers: how we identify a variable , choosing relevant identifiers is a good practice  e.g. string first_name = "Pritesh";/
+              here , first_name is a identifiers
+Keywords: set of predefined keywords in c++ , eg, try , break , continue , if etc . keywords cannot be IDENTIFIERS.
+
+Constants : 1) using const keyword 2)using #define preprocessor
+Strings : string in not built in in cpp like int or float.
+Special Symbols :Below are the most common special symbols used in C++ programming:
+                Semicolon (;): It is used to terminate the statement.
+               Square brackets []: They are used to store array elements.
+              Curly Braces {}: They are used to define blocks of code.
+             Scope resolution (::): Scope resolution operator is used to access members of namespaces, classes, etc.
+           Dot (.): Dot operator also called member access operator used to access class and struct members.
+         Assignment operator ‘=’: This operator is used to assign values to variables.
+       Double-quote (“): It is used to enclose string literals.
+     Single-quote (‘): It is used to enclose character literals.
+
+Operators : (A+B), in which ‘A’ and ‘B’ are operands, and ‘+’ is an arithmetic operator which is used to add two operands.
+           Types of Operators
+           Unary Operators
+           Binary Operators
+           Ternary Operators
+
+--------------------------------------------------------------------------------------------
+
+Dynamic initialization of variables :
+variables get initialized at runtime e.g. var length = strlen(str); , var area = 3.14*rad*rad;
+
+------reference variables :
+------code ----------
+#include <iostream>
+using namespace std;
+int main()
+{
+    int total =100;
+    int &sum =total; // sum is a reference to the variable total
+    cout<<"total: "<<total<<" sum: "<<sum<<endl;
+    total = 200;
+    cout<<"total: "<<total<<" sum: "<<sum<<endl;
+}
+--output----
+total: 100 sum: 100
+total: 200 sum: 200
+
+------------------------------- pointers -------------------------------------
+#include <iostream>
+using namespace std;
+int main()
+{
+    
+    
+    //what is a pointer ?
+    /*     
+    ----memory
+    --------------------------
+   |  address   | value      |
+   ---------------------------
+   |    0x1004 | 4          |  int x = 4;
+   ---------------------------
+   |   0x1005 | 0x1004     | int *pX = &x;
+    
+    
+    */
+    
+    // pointer syntax 
+    int x = 4;
+    int *px = &x; // integer pointer named pX is set to the address of x;
+    cout<<"x: "<<x<<" pX:"<<px<<endl;
+    
+    //dereferencing .
+    int y = *px; //integer named y is set to the thing pointed by x.
+    cout<<"y: "<<y;
+}
+--------------output
+x: 4 pX:0x7ffcb51bc9a8
+y: 4
+
+------- cmath library in c++----------
+sqrt() , floor(), ceil(), pow().
+
+------- --------------------------------------------------------
+******************************************************************
+-------------------------------------------------------------------
+*********************************************************************
+------------------------------------------------------------------------------------------------------------------------
+
+---------------- Classes and Objects ----------------------------------------------
+
+----How to call the private method in class ? -
+private methods are really required for handling extremely sensitive operations -----
+-----code 
+#include <iostream>
+class test{
+    void disp(){
+        std::cout<<"I'm the fucking man"<<std::endl;
+    }
+    public:
+    void _disp(){
+        disp();
+    }
+};
+int main()
+{
+    test t1;
+    t1._disp();
+}
+---output 
+I'm the fucking man
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+------static data members--------------
+static variables are used to maintain values common to the entire class and hence they also known as class variables .
+--
+#include <iostream>v
+class test{
+    static int ar1;
+    public:
+    void _inc(){
+        var1++;
+    }
+    void _show(){
+        std::cout<<var1<<" "<<std::endl;
+    }
+    
+    
+};
+int test::var1 =12; // default var1 = 0 ---------------- static data members are like member functions and hence they need to be defined outside the class
+int main()
+{
+    test t1,t2,t3;
+    
+    t1._inc();
+    
+    t1._show();
+    t2._show();
+    t3._show();
+}
+
+---------------- static member functions ---------------
+> Static member functions can only have access to other static members ( functions or variables) of a class.
+> Static member function can be called using the class name  , e.g. classname::static_function_name();
+---------------------------------------------------------------------------------------------------------------------
+
+------------------------------friendly functions in c++ : https://www.geeksforgeeks.org/friend-class-function-cpp/ -------
+
+> We can declare friend class or function anywhere in the base class body whether its private, protected or public block. It works all the same.
+
+> Friend class -- we use "friend class class_name;" anywhere in base class and then in class_name you can access private members of base class
+
+> Friend function --
+ 1)using global function(global function as a friend function)::
+we use "friend void friendFunction(base obj);" anywhere in base class and then in friendFunction you can access private members of base class 
+2) using member function of another class as a friend function ::
+we use "friend void anotherClass::memberFunction(base obj);"  anywhere in base class and then in another another class's memberFunction base class privates variables or methods can be accessed .
+
+> refer to "A Function Friendly to Multiple Classes" section on gfg (at the bottom).
+
+----------------------------------------------------------------------------------------------------------------
+****************************************************************************************************************
+--------------------------------------- constructors and destructors -------------------------------------------
+
+------ can constructors be private ? Answer is yes . To access that private constructor we need to create object in friend class then whatever's inside private constructor will get executed as shown in code below .
+----code
+#include <iostream>
+using namespace std;
+class A{
+    A(){
+        cout<<"constructor : A"<<endl;
+    }
+    friend class B;
+};
+class B{
+    public:
+    B(){
+        A a;
+    }
+};
+int main()
+{
+    B b; 
+    // A a; cte
+}
+
+---- output 
+constructor : A
+
+
+
+
+
+
+
+
+
+
+------------------polymorphism 
+
+
+---------------------------------------------------------------------*******************************----------------------------------------------------
+---------------------------------------------------------------------*******************************----------------------------------------------------
+---------------------------------------------------------------------*******************************----------------------------------------------------
+---------------------------------------------------------------------*******************************----------------------------------------------------
+---------------------------------------------------------------------*******************************----------------------------------------------------
+---------------------------------------------------------------------*******************************----------------------------------------------------
+---------------------------------------------------------------------*******************************----------------------------------------------------
+---------------------------------------------------------------------*******************************----------------------------------------------------
+
+
+---------------------------------------------------------------------multithreading in cpp ----------------------------------------------------------------
+
+------------time calculation in cpp----------------
+auto start_time = high_resolution_clock::now();//at the start of the code 
+auto end_time = high_resolution_clock::now(); //at the end 
+auto duration = duration_cast<milliseconds>(end_time - start_time); time can be "microseconds , seconds" etc
+cout<<duration.count()<<endl;
+
+NOTE : If we run multiple threads at once , there is no guarantee which one will run first .
+
+ways to create threads in cpp
+1)using function pointers 
+--- consider there is a function fun(int x) , then "std::thread t1(fun,10)" creates a thread which executes that function.
+2)using lambda expressions 
+
+lambda expressions :
+[capture clause](int parameters){ function definition; }
+
+------------code for lambda expressions :
+int main() {
+ 
+	vector<int> arr = {1,2,3,4,5};
+	
+	for_each(arr.begin(),arr.end(),[](int x){
+	    cout<<x<<" ";    //outputs : 1 2 3 4 5
+	});
+	auto func = [](int x){cout<<x+1<<" ";};
+	
+	for_each(arr.begin(),arr.end(),func); //outputs : 2 3 4 5 6
+	
+}
+--------------------------------code for creating threads using lambda expressions :--------------------------------
+
+#include <iostream>
+#include <thread>
+#include <vector>
+#include <algorithm>
+using namespace std;
+using namespace std::chrono;
+#define ull long long int
+int main() {
+	auto func = [](int x){cout<<x+1<<" ";};
+	
+	//both gives same output 11 .
+	
+	std::thread t1(func,10);
+	std::thread t2([](int x){cout<<x+1<<" ";},10);
+	
+	t1.join();
+	t2.join();
+	
+	
+}
+3)using function objects - need to overload ()
+-----------------------------------
+class fn_object_class {
+    // Overload () operator
+    void operator()(params)
+    { 
+      Statements; 
+    }
+}
+ 
+// Create thread object in main()
+std::thread thread_object(fn_object_class(), params)
+
+4) using non static member function
+// defining clasc
+class Base {
+public:
+	// non-static member function
+	void foo(param) { Statements; }
+}
+//main------------------
+// object of Base Class
+Base b;
+
+// first parameter is the reference to the functionn
+// and second paramter is reference of the object
+// at last we have arguments
+std::thread thread_obj(&Base::foo, &b, params);
+
+5)using static data member functions 
+
+class Base {
+public:
+    // static member function
+    static void foo(param) { Statements; }
+}
+ --main--
+// object of Base Class
+Base b;
+// first parameter is the reference to the function
+// and rest are arguments
+std::thread thread_obj(&Base::foo, params);
+thread_obj.join();
+
+----------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------join and detach -------------------------------------------
+
